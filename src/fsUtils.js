@@ -9,7 +9,7 @@ var EventEmitter = require('events').EventEmitter;
 
 var allowedExt = ["png","jpg","jpeg"];
 
-exports.readPhotosName = function (dir,callback) {
+exports.readPhotosFolder = function (dir,callback) {
     var e = new EventEmitter();
 
     if(dir === undefined || dir === null || dir === ""){

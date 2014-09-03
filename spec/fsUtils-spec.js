@@ -1,12 +1,12 @@
 /**
  * Created by alessandro on 02/09/14.
  */
-var fsUtils = require('../src/fsUtils');
+var readPhotosFolder = require('../src/fsUtils').readPhotosFolder;
 
 describe("readPhotosName", function () {
     it('should throw exception because dir is undefined', function () {
         expect( function(){
-            fsUtils.readPhotosName()
+            readPhotosFolder()
         }).toThrow(new Error("you must specify a directory to scan."));
     });
 
@@ -16,7 +16,7 @@ describe("readPhotosName", function () {
         var callback = function(fileList){
             response = fileList;
         };
-        fsUtils.readPhotosName('./spec/img').success(callback);
+        readPhotosFolder('./spec/img').success(callback);
 
         waitsFor(function() {
             return Array.isArray(response);

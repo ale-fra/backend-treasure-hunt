@@ -3,15 +3,14 @@
  */
 
 var buildJSON = require('./src/buildJSON').forgeJson;
-var fsUtils = require('./src/fsUtils').readPhotosName;
+var readPhotosFolder = require('./src/fsUtils').readPhotosFolder;
 
 var express = require('express');
 var app = express();
 
-app.get('/hello.txt', function(req, res){
+app.get('/getJSON', function(req, res){
 
-    function logger (text){console.log('FAIL:',text)}
-    fsUtils('./src/img')
+    readPhotosFolder('./img')
         .success(forgeJson)
         .fail(sendResponse);
 
