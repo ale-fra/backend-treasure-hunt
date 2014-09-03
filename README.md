@@ -23,4 +23,6 @@ logicamente il server rende anche pubblica la cartella delle immagini cosi da po
 
 andranno aggiunti poi le domande per i quix (presto lo farò )
 
+Ps: per provare clonate il repo, da shell entrare nella cartella scaricata e lanciare "node ." sul browser andate su http://localhost:3000/getJSON ;)
+
 fatemi sapere.
