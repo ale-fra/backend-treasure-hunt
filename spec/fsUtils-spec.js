@@ -4,10 +4,24 @@
 var readPhotosFolder = require('../src/fsUtils').readPhotosFolder;
 
 describe("readPhotosName", function () {
-    it('should throw exception because dir is undefined', function () {
-        expect( function(){
-            readPhotosFolder()
-        }).toThrow(new Error("you must specify a directory to scan."));
+    it('should fail because dir is undefined', function () {
+
+        var response = null;
+        var expected = ['img.png'];
+        var callback = function(){
+            response = true;
+        };
+        readPhotosFolder().fail(callback);
+
+        waitsFor(function() {
+            return response === true;
+        }, "The timed out.", 500);
+
+        runs(function() {
+            expect(response ).toBe(true);
+
+        });
+
     });
 
     it('should call callback after read folder', function () {
@@ -16,7 +30,8 @@ describe("readPhotosName", function () {
         var callback = function(fileList){
             response = fileList;
         };
-        readPhotosFolder('./spec/img').success(callback);
+        var dirPath = __dirname+'/img';
+        readPhotosFolder(dirPath).success(callback);
 
         waitsFor(function() {
             return Array.isArray(response);

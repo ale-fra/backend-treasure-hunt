@@ -11,18 +11,14 @@ var allowedExt = ["png","jpg","jpeg"];
 
 exports.readPhotosFolder = function (dir,callback) {
     var e = new EventEmitter();
-
-    if(dir === undefined || dir === null || dir === ""){
-        throw new Error("you must specify a directory to scan.");
-    }
-        fs.readdir(dir, function (err, fileList) {
-            if (err) {
-                e.emit('fail',err);
-                return;
-            }
-            fileList = filterImageFile(fileList);
-            e.emit('success',fileList);
-        });
+    fs.readdir(dir, function (err, fileList) {
+        if (err) {
+            e.emit('fail',err);
+            return;
+        }
+        fileList = filterImageFile(fileList);
+        e.emit('success',fileList);
+    });
 
     var self = {};
     self.success = function(f) {

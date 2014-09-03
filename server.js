@@ -9,8 +9,8 @@ var express = require('express');
 var app = express();
 
 app.get('/getJSON', function(req, res){
-
-    readPhotosFolder('./img')
+    var dirPath = __dirname+'/src/img';
+    readPhotosFolder(dirPath)
         .success(forgeJson)
         .fail(sendResponse);
 
@@ -26,7 +26,7 @@ app.get('/getJSON', function(req, res){
 
 });
 
-app.use("/img",express.static(process.cwd() + '/img'));
+app.use("/img",express.static(__dirname + '/src/img'));
 
 var server = app.listen(3000, function() {
     console.log('Listening on port %d', server.address().port);
